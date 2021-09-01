@@ -14,7 +14,18 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  if a == 0 and b == 0 and c == 0
+    raise TriangleError, "Cannot have side lengths of 0"
+  end
+  if a <= 0 || b <= 0 || c <= 0
+    raise TriangleError, "Invalid triangle side length"
+  end
+  if a + b <= c || b + c <= a || a + c <= b
+    raise TriangleError, "Cannot have the sum of two side lengths be greater than the final side length"
+  end
+  return :equilateral if a == b and b == c
+  return :isosceles if (a == b && a != c) || (a == c && a != b) || (b == c && b != a)
+  return :scalene
 end
 
 # Error class used in part 2.  No need to change this code.
